@@ -76,71 +76,96 @@ if (isset($_POST['update'])) {
   <div class="row">
     <div class="col-md-12">
       <div class="card card-body">
-        <h3>¡Señor usuario, usted va a modificar los datos del paciente, tenga precaución!</h3>
+        <h3>¡Señor usuario, usted va a modificar los datos del paciente, tenga precaución!</h3>        
+        <div class="row">
+    <div class="col-md-4">
         <form action="editapaciente.php?Identificacion=<?php echo $_GET['Identificacion']; ?>" method="POST">
           <div class="form-group">
             <label>Identificación</label>
             <input name="Identificacion" type="text" class="form-control" value="<?php echo $Identificacion; ?>" readonly>
-          </div>
+          </div></div>
+          <div class="col-md-4">
           <div class="form-group">
             <label>Primer Nombre</label>
             <input name="PrimerNombre" type="text" class="form-control" value="<?php echo $PrimerNombre; ?>" required>
-          </div>
+          </div></div>
+          <div class="col-md-4">
           <div class="form-group">
             <label>Segundo Nombre</label>
             <input name="SegundoNombre" type="text" class="form-control" value="<?php echo $SegundoNombre; ?>">
+          </div></div>
           </div>
+          <div class="row">
+    <div class="col-md-4">
           <div class="form-group">
             <label>Primer Apellido</label>
             <input name="PrimerApellido" type="text" class="form-control" value="<?php echo $PrimerApellido; ?>" required>
-          </div>
+          </div></div>
+    <div class="col-md-4">
           <div class="form-group">
             <label>Segundo Apellido</label>
             <input name="SegundoApellido" type="text" class="form-control" value="<?php echo $SegundoApellido; ?>">
-          </div>
+          </div></div>
+    <div class="col-md-4">
           <div class="form-group">
             <label>Fecha de Nacimiento</label>
             <input name="FechaNacimiento" type="date" class="form-control" value="<?php echo $FechaNacimiento; ?>" required>
-          </div>
+          </div></div></div>
+
+          
+          <div class="row">
+    <div class="col-md-4">
           <div class="form-group">
             <label>Género</label>
             <select name="Genero" class="form-control" required>
               <option value="Masculino" <?php if($Genero == 'Masculino') echo 'selected'; ?>>Masculino</option>
               <option value="Femenino" <?php if($Genero == 'Femenino') echo 'selected'; ?>>Femenino</option>
             </select>
-          </div>
+          </div></div>
+          <div class="col-md-4">
           <div class="form-group">
             <label>Teléfono</label>
             <input name="Telefono" type="text" class="form-control" value="<?php echo $Telefono; ?>" required>
-          </div>
+          </div></div>
+          <div class="col-md-4">
           <div class="form-group">
             <label>Correo Electrónico</label>
             <input name="Email" type="email" class="form-control" value="<?php echo $Email; ?>" required>
-          </div>
+          </div></div></div>
+
+          <div class="row">
+    <div class="col-md-4">
           <div class="form-group">
             <label>Dirección</label>
             <input name="Direccion" type="text" class="form-control" value="<?php echo $Direccion; ?>" required>
-          </div>
+          </div></div>
+          <div class="col-md-4">
           <div class="form-group">
             <label>Ciudad</label>
             <input name="Ciudad" type="text" class="form-control" value="<?php echo $Ciudad; ?>" required>
-          </div>
+          </div></div>
+          <div class="col-md-4">
           <div class="form-group">
             <label>País</label>
             <input name="Pais" type="text" class="form-control" value="<?php echo $Pais; ?>" required>
-          </div>
+          </div></div></div>
+
+          <div class="row">
+    <div class="col-md-4">
           <div class="form-group">
             <label>EPS</label>
             <input name="Eps" type="text" class="form-control" value="<?php echo $Eps; ?>" required>
-          </div>
+          </div></div>
+          <div class="col-md-4">
           <div class="form-group">
             <label>Grupo Sanguíneo</label>
             <input name="GrupoSanguineo" type="text" class="form-control" value="<?php echo $GrupoSanguineo; ?>" required>
-          </div>
+          </div></div>
+          <div class="col-md-4">
           <div class="form-group">
             <label>RH</label>
             <input name="RH" type="text" class="form-control" value="<?php echo $RH; ?>" required>
-          </div>
+          </div></div></div>
           <button type="submit" class="btn btn-warning btn-lg btn-block" name="update">Actualizar datos del paciente</button>
 
         </form>
