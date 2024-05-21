@@ -1,4 +1,4 @@
 <?php
 	
-	$mysqli = new mysqli("localhost", "root", "", "bdnomina");
+	$mysqli = new mysqli("localhost", "root", "", "medicosoft");
 ?>

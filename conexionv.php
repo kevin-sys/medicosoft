@@ -4,7 +4,7 @@ $conn = mysqli_connect(
   'localhost',
   'root',
   '',
-  'bdnomina'
+  'medicosoft'
 ) or die(mysqli_erro($mysqli));
 
 ?>

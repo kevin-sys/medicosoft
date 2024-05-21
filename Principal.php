@@ -24,7 +24,7 @@ $Usuario = $_SESSION['Usuario'];
 <html lang="en">
 
 <head>
-    <title>Menu Principal - SIMULASOFT</title>
+    <title>Menu Principal - MEDICOSOFT</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -64,10 +64,10 @@ $Usuario = $_SESSION['Usuario'];
     <?php if ($Usuario == "Administrador") { ?>
         <aside class="app-sidebar">
             <div class="app-sidebar__user"><img class="app-sidebar__user-avatar"
-                src="images/logoUpc.png" width="60" height="50" alt="User Image">
+                src="images/logo.png" width="70" height="60" alt="User Image">
                 <div>
                     <p class="app-sidebar__user-name">Administrador</p>
-                    <p class="app-sidebar__user-designation">SimulaSoft</p>
+                    <p class="app-sidebar__user-designation">MEDICOSOFT</p>
                 </div>
             </div>
             <ul class="app-menu">
@@ -75,19 +75,19 @@ $Usuario = $_SESSION['Usuario'];
                     class="app-menu__label">Menu Principal</span></a></li>
 
                     <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
-                        class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Gestión General</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                        class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Parametros generales</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                         <ul class="treeview-menu">
-                            <li><a class="treeview-item" href="GestionDocente.php"><i class="icon fa fa-circle-o"></i>Registro del aspirante</a></li>
-                            <li><a class="treeview-item" href="ConsultarDocente.php"><i class="icon fa fa-circle-o"></i> Listado de aspirantes</a></li>
-                            <li><a class="treeview-item" href="http://www2.unicesar.edu.co/unicesar/hermesoft/vortal/miVortal/logueo.jsp"><i class="icon fa fa-circle-o"></i>Vortal HermeSoft</a></li>
-                            <li><a class="treeview-item" href="https://github.com/kevin-sys"><i class="icon fa fa-circle-o"></i>Contactar al desarrollador</a></li>
+                            <li><a class="treeview-item" href="GestionDocente.php"><i class="icon fa fa-circle-o"></i> Gestión de citas médicas</a></li>
+                            <li><a class="treeview-item" href="ConsultarDocente.php"><i class="icon fa fa-circle-o"></i> Registro de pacientes</a></li>
+                            <li><a class="treeview-item" href="http://www2.unicesar.edu.co/unicesar/hermesoft/vortal/miVortal/logueo.jsp"><i class="icon fa fa-circle-o"></i> Administración de usuarios</a></li>
+                            <li><a class="treeview-item" href="https://github.com/kevin-sys"><i class="icon fa fa-circle-o"></i> Informes del sistema</a></li>
                         </ul>
                     </li>
                     <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
-                        class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Gestión financiera</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                        class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Agenda Médica</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                         <ul class="treeview-menu">
-                            <li><a class="treeview-item" href="docs/LiquidacionGeneral.php"><i class="icon fa fa-circle-o"></i>Liquidación general</a></li>
-                            <li><a class="treeview-item" href="docs/CargarDocumentos.php"><i class="icon fa fa-circle-o"></i>Cargar hoja de vida</a></li>
+                            <li><a class="treeview-item" href="docs/LiquidacionGeneral.php"><i class="icon fa fa-circle-o"></i> Crear agenda</a></li>
+                            <li><a class="treeview-item" href="docs/CargarDocumentos.php"><i class="icon fa fa-circle-o"></i> Asignar agenda</a></li>
                       
                         </ul>
                     </li>
@@ -98,10 +98,9 @@ $Usuario = $_SESSION['Usuario'];
         <?php if ($Usuario != "Administrador") { ?>
             <aside class="app-sidebar">
                 <div class="app-sidebar__user"><img class="app-sidebar__user-avatar"
-                    src="images/logoUpc.png" width="60" height="50" alt="User Image">
+                    src="images/logo.png" width="60" height="50" alt="User Image">
                     <div>
-                        <p class="app-sidebar__user-name">Docente</p>
-                        <p class="app-sidebar__user-designation">SimulaSoft</p>
+                        <p class="app-sidebar__user-designation">MEDICOSOFT</p>
                     </div>
                 </div>
                 <ul class="app-menu">
@@ -124,11 +123,10 @@ $Usuario = $_SESSION['Usuario'];
                         <div class="tile">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <h3>Acuerdo 006 del 23 de abril de 2018 Reglamento docentes ocasionales y catedráticos UPC</h3>
+                                    <h3>BIENVENIDOS A MEDICOSOFT</h3>
                                     <br>
                                     <p1>
-                                        Por el cual se establece el reglamento de vinculación de los docentes ocasionales y catedráticos de la Universidad Popular Del Cesar.
-                                        <a href="http://hojasdevida.unicesar.edu.co/InscripcionDocente/Tablero/Acuerdo036.pdf">(Click aqui para descargar)</a></p1>
+                                    MedicoSoft es una aplicación diseñada para simplificar la gestión de citas médicas, registrar pacientes, administrar usuarios y organizar la agenda de consultas de manera eficiente. Con un enfoque intuitivo y herramientas fáciles de usar, MedicoSoft está diseñado para ayudar a los profesionales de la salud a optimizar su práctica médica.</a></p1>
                                     </div>
                                 </div>
 
@@ -137,21 +135,44 @@ $Usuario = $_SESSION['Usuario'];
                     </div>
 
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="tile">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <h3>Acuerdo 039 del 05 de noviembre de 2019; Se reglamenta proceso categorización profesores ocasionales y catedráticos.</h3>
-                                        <br>
-                                        <p1>
-                                            Mediante el cual se reglamenta el proceso de categorización, permanencia y promoción de los profesores universitarios ocasionales y de catedras de la Universidad Popular Del cesar.
-                                            <a href="https://www.unicesar.edu.co/index.php/es/normatividad/doc_download/5251-acuerdo-039-del-05-de-noviembre-de-2019-se-reglamenta-proceso-categorizacion-profesores-ocasionales-y-catedraticos#:~:text=ACUERDA%3A,la%20Universidad%20Popular%20del%20Cesar.">(Click aqui para descargar)</a></p1>
-                                        </div>
-                                    </div>
+    <div class="col-md-12">
+        <div class="tile">
+            <div class="row">
+                <div class="col-lg-12">
+                    <a href="#" class="btn btn-primary btn-block btn-lg">
+                        <i class="fa fa-calendar-check-o mr-2"></i> Gestión de Citas Médicas
+                    </a>
+                </div>
+            </div>
 
-                                </div>
-                            </div>
-                        </div>
+            <div class="row mt-3">
+                <div class="col-lg-12">
+                    <a href="#" class="btn btn-success btn-block btn-lg">
+                        <i class="fa fa-user-plus mr-2"></i> Registro de Pacientes
+                    </a>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-lg-12">
+                    <a href="#" class="btn btn-danger btn-block btn-lg">
+                        <i class="fa fa-users mr-2"></i> Administración de Usuarios
+                    </a>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-lg-12">
+                    <a href="#" class="btn btn-warning btn-block btn-lg">
+                        <i class="fa fa-calendar-plus-o mr-2"></i> Creación y Asignación de Agenda
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
                     </main>
                     <!-- Essential javascripts for application to work-->
