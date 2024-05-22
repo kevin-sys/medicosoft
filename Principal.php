@@ -80,14 +80,15 @@ $Usuario = $_SESSION['Usuario'];
                             <li><a class="treeview-item" href="GestionDocente.php"><i class="icon fa fa-circle-o"></i> Gestión de citas médicas</a></li>
                             <li><a class="treeview-item" href="ConsultarDocente.php"><i class="icon fa fa-circle-o"></i> Registro de pacientes</a></li>
                             <li><a class="treeview-item" href="http://www2.unicesar.edu.co/unicesar/hermesoft/vortal/miVortal/logueo.jsp"><i class="icon fa fa-circle-o"></i> Administración de usuarios</a></li>
-                            <li><a class="treeview-item" href="https://github.com/kevin-sys"><i class="icon fa fa-circle-o"></i> Informes del sistema</a></li>
+                            
                         </ul>
                     </li>
                     <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
                         class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Agenda Médica</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                         <ul class="treeview-menu">
                             <li><a class="treeview-item" href="docs/LiquidacionGeneral.php"><i class="icon fa fa-circle-o"></i> Crear agenda</a></li>
-                            <li><a class="treeview-item" href="docs/CargarDocumentos.php"><i class="icon fa fa-circle-o"></i> Asignar agenda</a></li>
+                            <li><a class="treeview-item" href="gestion-procedimientos.php"><i class="icon fa fa-circle-o"></i> Procedimientos medicos</a></li>
+                            <li><a class="treeview-item" href="docs/CargarDocumentos.php"><i class="icon fa fa-circle-o"></i> Reporte de agendas</a></li>
                       
                         </ul>
                     </li>
@@ -164,7 +165,7 @@ $Usuario = $_SESSION['Usuario'];
             <div class="row mt-3">
                 <div class="col-lg-12">
                     <a href="#" class="btn btn-warning btn-block btn-lg">
-                        <i class="fa fa-calendar-plus-o mr-2"></i> Creación y Asignación de Agenda
+                        <i class="fa fa-calendar-plus-o mr-2"></i> Creación de Agenda
                     </a>
                 </div>
             </div>

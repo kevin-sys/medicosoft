@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-05-2024 a las 07:04:14
+-- Tiempo de generación: 22-05-2024 a las 05:52:41
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -56,6 +56,28 @@ INSERT INTO `paciente` (`Identificacion`, `PrimerNombre`, `SegundoNombre`, `Prim
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `procedimiento`
+--
+
+CREATE TABLE `procedimiento` (
+  `Id_CUPS` varchar(15) NOT NULL,
+  `Nombre` varchar(150) NOT NULL,
+  `PrecioProcedimiento` float NOT NULL,
+  `FechaRegistro` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `procedimiento`
+--
+
+INSERT INTO `procedimiento` (`Id_CUPS`, `Nombre`, `PrecioProcedimiento`, `FechaRegistro`) VALUES
+('890204', 'CONSULTA DE PRIMERA VEZ POR OTRAS ESPECIALIDADES EN ODONTOLOGIA', 350000, '2024-05-22 03:28:36'),
+('890208', 'CONSULTA DE PRIMERA VEZ POR PSICOLOGÍA', 9800, '2024-05-22 03:33:52'),
+('937000', 'TERAPIA FONOAUDIOLÓGICA INTEGRAL SOD', 50000, '2024-05-22 03:15:00');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuario`
 --
 
@@ -73,7 +95,7 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`Identificacion`, `Usuario`, `Contraseña`, `ValidacionUsuario`, `FechaRegistro`) VALUES
 ('1065853708', 'Administrador', 'admin', 1, '2024-05-21 08:42:00'),
-('873454', 'Secretaria', '123456', 0, '2024-05-21 03:51:54');
+('873454', 'Secretaria', '123456', 1, '2024-05-21 15:56:08');
 
 --
 -- Índices para tablas volcadas
@@ -84,6 +106,13 @@ INSERT INTO `usuario` (`Identificacion`, `Usuario`, `Contraseña`, `ValidacionUs
 --
 ALTER TABLE `paciente`
   ADD PRIMARY KEY (`Identificacion`);
+
+--
+-- Indices de la tabla `procedimiento`
+--
+ALTER TABLE `procedimiento`
+  ADD PRIMARY KEY (`Id_CUPS`),
+  ADD UNIQUE KEY `Nombre` (`Nombre`);
 
 --
 -- Indices de la tabla `usuario`
