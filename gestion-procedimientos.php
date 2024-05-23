@@ -84,6 +84,8 @@ $Usuario = $_SESSION['Usuario'];
                                             rows="4"></textarea>
                                         </div>
                                     </div>
+                                   
+
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" name="insertar_procedimiento" class="btn btn-primary"><i

@@ -2,16 +2,54 @@
 require "conexion.php";
 session_start();
 $Usuario = $_SESSION['Usuario'];
+$PrimerNombre = '';
+$SegundoNombre = '';
+$PrimerApellido = '';
+$SegundoApellido = '';
+$FechaNacimiento = '';
+$Genero = '';
+$Telefono = '';
+$Email = '';
+$Direccion = '';
+$Ciudad = '';
+$Eps = '';
+$GrupoSanguineo = '';
+$RH = '';
+
+if (isset($_GET['Identificacion'])) 
+{
+  $Identificacion = $_GET['Identificacion'];
+  //$query = "SELECT * FROM activos WHERE Identificacion=$Identificacion";
+  $query = "SELECT * FROM paciente WHERE Identificacion='$Identificacion'";
+
+  $result = mysqli_query($mysqli, $query);
+  if (mysqli_num_rows($result) == 1) 
+  {
+    $row = mysqli_fetch_array($result);
+    $PrimerNombre = $row['PrimerNombre'];
+    $SegundoNombre = $row['SegundoNombre'];
+    $PrimerApellido = $row['PrimerApellido'];
+    $SegundoApellido = $row['SegundoApellido'];
+    $FechaNacimiento = $row['FechaNacimiento'];
+    $Genero = $row['Genero'];
+    $Telefono = $row['Telefono'];
+    $Email = $row['Email'];
+    $Direccion = $row['Direccion'];
+    $Ciudad = $row['Ciudad'];
+    $Eps = $row['Eps'];
+    $GrupoSanguineo = $row['GrupoSanguineo'];
+    $RH = $row['RH'];
 
 
+}
+}
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Crear Agenda - MEDICOSOFT</title>
+    <title>CREAR AGENDA MÉDICA - MEDICOSOFT</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -51,7 +89,7 @@ $Usuario = $_SESSION['Usuario'];
                 src="images/logoUpc.png" width="60" height="50" alt="User Image">
                 <div>
                     <p class="app-sidebar__user-name">Administrador</p>
-                    <p class="app-sidebar__user-designation">MEDICOSOFT</p>
+                    <p class="app-sidebar__user-designation">SimulaSoft</p>
                 </div>
             </div>
             <ul class="app-menu">
@@ -82,7 +120,7 @@ $Usuario = $_SESSION['Usuario'];
         <?php if ($Usuario != "Administrador") { ?>
             <aside class="app-sidebar">
                 <div class="app-sidebar__user"><img class="app-sidebar__user-avatar"
-                    src="images/logoUpc.png" width="60" height="50" alt="User Image">
+                    src="images/logo.png" width="60" height="50" alt="User Image">
                     <div>
                         <p class="app-sidebar__user-name">Docente</p>
                         <p class="app-sidebar__user-designation">SimulaSoft</p>
@@ -102,115 +140,285 @@ $Usuario = $_SESSION['Usuario'];
                     </ul>
                 </aside>
             <?php } ?>
+
+
             <main class="app-content">
-    <div>
-        <h4>Crear nueva cuenta de usuario en el sistema MEDICOSOFT.</h4>
-    </div>
-    <div class="row">
-        <div class="col-md-6 col-lg-12">
-            <div class="tile">
+                <div>
+                    <h4>Apartar cita médica para el paciente registrado en el sistema MEDICOSOFT.</h4>
+                </div>
                 <div class="row">
-                    <div class="col-lg-12">
-                        <form action="insertausuario.php" method="POST">
+                    <div class="col-md-12">
+                        <div class="tile">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label class="control-label">Identificación</label>
-                                        <input type="time" class="form-control" name="Identificacion"
-                                            placeholder="Digite Identificación" minlength="6" maxlength="11"
-                                            pattern="[0-9]{1,12}" title="Solamente se admiten números"
-                                            required="required">
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label class="control-label">Usuario</label>
-                                        <select class="form-control" name="Usuario" required="required">
-                                            <option>Seleccione el tipo de usuario a crear</option>
-                                            <option value="Secretaria">SECRETARIA</option>
-                                            <option value="Especialista">ESPECIALISTA</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label class="control-label">Contraseña</label>
-                                        <input type="password" class="form-control" name="Contraseña"
-                                            placeholder="Digite la contraseña" minlength="6" maxlength="15"
-                                            title="Solamente se admiten caracteres">
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="modal-footer">
-                                <button type="submit" name="insertausuario" class="btn btn-primary"><i
-                                        class="fa fa-fw fa-lg fa-check-circle"></i>Registrar
-                                </button>
-                                <button type="button" id="btnLimpiar" class="btn btn-danger"><i
-                                        class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="tile">
-                <h3 class="tile-title">Usuarios Creados</h3>
-                <div class="tile-body">
-                    <table class="table table-hover table-bordered" id="sampleTable">
-                        <thead>
-                            <tr>
-                                <th>Identificación</th>
-                                <th>Usuario</th>
-                                <th>Fecha de registro</th>
+                                    <form id="employeeForm" action="insertacita.php" method="POST">
+                                        <div class="row">
+                                          <div class="col-lg-2">
+                                            <div class="form-group">
+                                              <label class="control-label">Fecha de la cita</label>
+                                              <input class="form-control" type="date" name="FechaCita"
+                                              placeholder="*Ingrese Fecha de la cita" required="required">
+                                          </div>
+                                      </div>
 
-                                <!-- Agrega más columnas según sea necesario -->
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            require "conexion.php";
-                            $sql = "SELECT * FROM usuario";
-                            $resultado = $mysqli->query($sql);
-                            if ($resultado->num_rows > 0) {
-                                while ($row = $resultado->fetch_assoc()) {
-                                    echo "<tr>";
-                                    echo "<td>" . $row["Identificacion"] . "</td>";
-                                    echo "<td>" . $row["Usuario"] . "</td>";
-                                    echo "<td>" . $row["FechaRegistro"] . "</td>";
+                                      <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <label class="control-label">Hora de la cita</label>
+                                            <input class="form-control" type="time" name="HoraCita"
+                                            placeholder="*Seleccione la hora de la cita" required="required">
+                                        </div>
+                                    </div>
 
-                                    // Puedes agregar más columnas aquí si es necesario
-                                    echo "</tr>";
-                                }
-                            } else {
-                                echo "<tr><td colspan='2'>No hay usuarios creados</td></tr>";
-                            }
-                            $mysqli->close();
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="control-label">Seleccione Procedimiento</label>
+                                            <select id="procedimiento" class="form-control" name="NombreProcedimiento" onchange="actualizarPrecio()">
+                                                <option value="">Seleccione...</option>
+                                                <?php
+                                                include 'conexion.php';
+
+                                                $query = $mysqli->query("SELECT * FROM procedimiento");
+                                                if ($query) {
+                                                    while ($row = $query->fetch_assoc()) {
+                                                        echo '<option value="' . $row['Nombre'] . '" data-precio="' . $row['PrecioProcedimiento'] . '">' . htmlspecialchars($row['Nombre']) . '</option>';
+                                                    }
+                                                } else {
+                                                    echo "Error en la consulta: " . $mysqli->error;
+                                                }
+
+                                                $mysqli->close();
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label class="control-label">Precio del Procedimiento</label>
+                                            <input id="precioProcedimiento" class="form-control" type="text" name="PrecioProcedimiento" readonly>
+                                        </div>
+                                    </div>
+
+
+
+                                    <!-- Select para Nombre del Usuario -->
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Seleccione el profesional que va a atender</label>
+                                            <select id="usuario" class="form-control" name="NombreProfesional" onchange="actualizarIdentificacion()">
+                                                <option value="">Seleccione...</option>
+                                                <?php
+                                                include 'conexion.php';
+
+                                                $query = $mysqli->query("SELECT * FROM usuario WHERE usuario='Especialista'");
+                                                if ($query) {
+                                                    while ($row = $query->fetch_assoc()) {
+                                                        echo '<option value="' . $row['Nombre'] . '" data-identificacion="' . $row['Identificacion'] . '">' . htmlspecialchars($row['Nombre']) . '</option>';
+                                                    }
+                                                } else {
+                                                    echo "Error en la consulta: " . $mysqli->error;
+                                                }
+
+                                                $mysqli->close();
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- Caja de texto para la Identificación del Usuario -->
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Identificación del profesional</label>
+                                            <input id="identificacionUsuario" class="form-control" type="text" name="IdentificacionProfesional" readonly>
+                                        </div>
+                                    </div>
+
+
+                                    <script>
+                                        function actualizarIdentificacion() {
+                                            var select = document.getElementById('usuario');
+                                            var identificacion = select.options[select.selectedIndex].getAttribute('data-identificacion');
+                                            document.getElementById('identificacionUsuario').value = identificacion;
+                                        }
+                                    </script>
+
+
+                                    <script>
+                                        function actualizarPrecio() {
+                                            var select = document.getElementById('procedimiento');
+                                            var precio = select.options[select.selectedIndex].getAttribute('data-precio');
+                                            document.getElementById('precioProcedimiento').value = precio;
+                                        }
+                                    </script>
+
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                          <label class="control-label">Identificación</label>
+                                          <input type="text" class="form-control" name="Identificacion"
+                                          value="<?php echo $Identificacion; ?>" readonly minlength="6" maxlength="11"
+                                          pattern="[0-9]{1,12}" title="Solamente se admiten números"
+                                          required="required">
+                                      </div>
+                                  </div>
+                                  <div class="col-lg-2">
+                                    <div class="form-group">
+                                      <label class="control-label">Primer Nombre</label>
+                                      <input type="text" class="form-control" name="PrimerNombre"
+                                      value="<?php echo $PrimerNombre; ?>" readonly minlength="2" maxlength="30"
+
+                                      required="required">
+                                  </div>
+                              </div>
+                              <div class="col-lg-2">
+                                <div class="form-group">
+                                  <label class="control-label">Segundo Nombre</label>
+                                  <input type="text" class="form-control" name="SegundoNombre"
+                                  required="required" minlength="3" maxlength="35" title="Campo de solo lectura" value="<?php echo $SegundoNombre; ?> "readonly>
+                              </div>
+                          </div>
+                          <div class="col-lg-3">
+                            <div class="form-group">
+                              <label class="control-label">Primer Apellido</label>
+                              <input type="text" class="form-control" name="PrimerApellido"
+                              required="required" minlength="3" maxlength="35" title="Campo de solo lectura" value="<?php echo $PrimerApellido; ?> "readonly>
+                          </div>
+                      </div>
+
+                      <div class="col-lg-3">
+                        <div class="form-group">
+                          <label class="control-label">Segundo Apellido</label>
+                          <input type="text" class="form-control" name="SegundoApellido"
+                          required="required" minlength="3" maxlength="150" title="Campo de solo lectura" value="<?php echo $SegundoApellido; ?> "readonly>
+                      </div>
+                  </div>
+
+              </div>
+              <div class="row">
+
+                  <div class="col-lg-2">
+                    <div class="form-group">
+                      <label class="control-label">Fecha de Nacimiento</label>
+                      <input type="text" class="form-control" name="FechaNacimiento"
+
+                      required="required" minlength="3" maxlength="150" title="Campo de solo lectura" value="<?php echo $FechaNacimiento; ?> "readonly>
+                  </div>
+              </div>
+              <div class="col-lg-2">
+                <div class="form-group">
+                  <label class="control-label">Genero</label>
+                  <input type="text" class="form-control" name="Genero"
+                  required="required" minlength="2" maxlength="35" title="Campo de solo lectura" value="<?php echo $Genero; ?> "readonly>
+              </div>
+          </div>
+
+          <div class="col-lg-2">
+            <div class="form-group">
+              <label class="control-label">GrupoSanguineo</label>
+              <input type="text" class="form-control" name="GrupoSanguineo"
+              minlength="3" maxlength="35" title="Campo de solo lectura" value="<?php echo $GrupoSanguineo; ?> "readonly>
+          </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="form-group">
+          <label class="control-label">RH</label>
+          <input type="text" class="form-control" name="RH"
+          minlength="3" maxlength="250" title="Campo de solo lectura" value="<?php echo $RH; ?> "readonly>
+      </div>
+  </div>
+
+  <div class="col-lg-3">
+    <div class="form-group">
+      <label class="control-label">Telefono</label>
+      <input type="text" class="form-control" name="Telefono"
+      required="required" minlength="3" maxlength="35" title="Campo de solo lectura" value="<?php echo $Telefono; ?> "readonly>
+  </div>
+</div>
+<div class="col-lg-4">
+    <div class="form-group">
+      <label class="control-label">Email</label>
+      <input type="text" class="form-control" name="Email"
+      minlength="3" maxlength="35" title="Campo de solo lectura" value="<?php echo $Email; ?> "readonly>
+  </div>
+</div>
+<div class="col-lg-4">
+    <div class="form-group">
+      <label class="control-label">Direccion</label>
+      <input type="text" class="form-control" name="Direccion"
+      minlength="3" maxlength="250" title="Campo de solo lectura" value="<?php echo $Direccion; ?> "readonly>
+  </div>
+</div>
+<div class="col-lg-4">
+    <div class="form-group">
+      <label class="control-label">Ciudad</label>
+      <input type="text" class="form-control" name="Ciudad"
+      minlength="3" maxlength="250" title="Campo de solo lectura" value="<?php echo $Ciudad; ?> "readonly>
+  </div>
+</div>
+</div>
+
+
+<div class="modal-footer">
+  <button type="submit" name="insertacita" class="btn btn-success"><i
+    class="fa fa-fw fa-lg fa-check-circle"></i>Registrar</button>
+    <button type="button" id="btnLimpiar" class="btn btn-danger"><i
+      class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</button>
+  </div>
+</form>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
 </main>
-
-        <!-- Essential javascripts for application to work-->
-        <script src="assets/jquery/jquery-3.3.1.min.js"></script>
-        <script src="assets/popper/popper.min.js"></script>
-        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="assets/main.js"></script>
-        <script type="text/javascript" src="main.js"></script>
-     <!--
-    <script type="text/javascript" src="js/plugins/bootstrap-notify.min.js"></script>
--->
+<!-- Essential javascripts for application to work-->
+<script src="assets/jquery/jquery-3.3.1.min.js"></script>
+<script src="assets/popper/popper.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/main.js"></script>
+<script type="text/javascript" src="main.js"></script>
 <script type="text/javascript" src="assets/sweetalert.min.js"></script>
 <script type="text/javascript" src="assets/datatables/datatables.min.js"></script> 
-<!-- Page specific javascripts-->
+
+
+
+<!-- Modal de confirmación -->
+<div class="modal fade" id="confirmacionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">¿Estás seguro?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Se perderán los datos ingresados. ¿Deseas continuar?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" id="btnConfirmarCancelar" class="btn btn-danger">Sí, cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $("#btnConfirmarCancelar").click(function() {
+            limpiarCampos();
+            $('#confirmacionModal').modal('hide');
+        });
+    });
+
+    function limpiarCampos() {
+        $('input[type="text"]').val('');
+        $('input[type="date"]').val('');
+        $('input[type="email"]').val('');
+        $('select').prop('selectedIndex', 0);
+    }
+</script>
+
 <!-- Google analytics script-->
 <script type="text/javascript">
     if (document.location.hostname == 'pratikborsadiya.in') {

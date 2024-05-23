@@ -7,7 +7,9 @@ if (isset($_POST['insertausuario'])) {
   $Identificacion = $_POST['Identificacion'];
   $Usuario = $_POST['Usuario'];
   $Contraseña = $_POST['Contraseña'];
-  $query = "INSERT INTO usuario(Identificacion,Usuario,Contraseña) VALUES ('$Identificacion', '$Usuario', '$Contraseña')";
+  $Nombre = $_POST['Nombre'];
+
+  $query = "INSERT INTO usuario(Identificacion,Usuario,Contraseña,Nombre) VALUES ('$Identificacion', '$Usuario', '$Contraseña','$Nombre')";
   $result = mysqli_query($conn, $query);
   
 

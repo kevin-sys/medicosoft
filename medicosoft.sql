@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-05-2024 a las 05:52:41
+-- Tiempo de generación: 23-05-2024 a las 07:59:51
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -20,6 +20,42 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `medicosoft`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cita_medica`
+--
+
+CREATE TABLE `cita_medica` (
+  `Id` int(11) NOT NULL,
+  `FechaCita` date NOT NULL,
+  `HoraCita` time NOT NULL,
+  `NombreProcedimiento` varchar(255) NOT NULL,
+  `PrecioProcedimiento` decimal(10,2) NOT NULL,
+  `NombreProfesional` varchar(255) NOT NULL,
+  `IdentificacionProfesional` varchar(20) NOT NULL,
+  `Identificacion` varchar(20) NOT NULL,
+  `PrimerNombre` varchar(30) NOT NULL,
+  `SegundoNombre` varchar(35) NOT NULL,
+  `PrimerApellido` varchar(35) NOT NULL,
+  `SegundoApellido` varchar(150) NOT NULL,
+  `FechaNacimiento` date NOT NULL,
+  `Genero` varchar(35) NOT NULL,
+  `GrupoSanguineo` varchar(35) NOT NULL,
+  `RH` varchar(10) NOT NULL,
+  `Telefono` varchar(35) NOT NULL,
+  `Email` varchar(35) NOT NULL,
+  `Direccion` varchar(250) NOT NULL,
+  `Ciudad` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `cita_medica`
+--
+
+INSERT INTO `cita_medica` (`Id`, `FechaCita`, `HoraCita`, `NombreProcedimiento`, `PrecioProcedimiento`, `NombreProfesional`, `IdentificacionProfesional`, `Identificacion`, `PrimerNombre`, `SegundoNombre`, `PrimerApellido`, `SegundoApellido`, `FechaNacimiento`, `Genero`, `GrupoSanguineo`, `RH`, `Telefono`, `Email`, `Direccion`, `Ciudad`) VALUES
+(8, '2024-05-27', '15:25:00', 'CONSULTA DE PRIMERA VEZ POR OTRAS ESPECIALIDADES EN ODONTOLOGIA', 350000.00, 'MARIA MERCEDES DAZA DAZA', '17955918', '88787877', 'jose', 'Kevin ', 'Gómez ', 'Cantillo ', '1980-02-01', 'Masculino ', 'AB+ ', 'Positivo ', '3245650170 ', 'joe@hotmail.com ', 'Urb nando marin blq l apt 203 ', 'Medellin ');
 
 -- --------------------------------------------------------
 
@@ -86,6 +122,7 @@ CREATE TABLE `usuario` (
   `Usuario` varchar(30) NOT NULL,
   `Contraseña` varchar(30) NOT NULL,
   `ValidacionUsuario` int(1) NOT NULL DEFAULT 0,
+  `Nombre` varchar(100) NOT NULL,
   `FechaRegistro` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -93,13 +130,20 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`Identificacion`, `Usuario`, `Contraseña`, `ValidacionUsuario`, `FechaRegistro`) VALUES
-('1065853708', 'Administrador', 'admin', 1, '2024-05-21 08:42:00'),
-('873454', 'Secretaria', '123456', 1, '2024-05-21 15:56:08');
+INSERT INTO `usuario` (`Identificacion`, `Usuario`, `Contraseña`, `ValidacionUsuario`, `Nombre`, `FechaRegistro`) VALUES
+('1065853708', 'Administrador', 'admin', 1, 'Pedro Perez', '2024-05-23 04:45:06'),
+('17955918', 'Especialista', '123456', 1, 'MARIA MERCEDES DAZA DAZA', '2024-05-23 05:47:54'),
+('873454', 'Secretaria', '123456', 1, 'Josefa Perez', '2024-05-23 04:45:15');
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `cita_medica`
+--
+ALTER TABLE `cita_medica`
+  ADD PRIMARY KEY (`Id`);
 
 --
 -- Indices de la tabla `paciente`
@@ -119,6 +163,16 @@ ALTER TABLE `procedimiento`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`Identificacion`,`Usuario`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `cita_medica`
+--
+ALTER TABLE `cita_medica`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -103,108 +103,121 @@ $Usuario = $_SESSION['Usuario'];
                 </aside>
             <?php } ?>
             <main class="app-content">
-    <div>
-        <h4>Crear nueva cuenta de usuario en el sistema MEDICOSOFT.</h4>
-    </div>
-    <div class="row">
-        <div class="col-md-6 col-lg-12">
-            <div class="tile">
+                <div>
+                    <h4>Crear nueva cuenta de usuario en el sistema MEDICOSOFT.</h4>
+                </div>
                 <div class="row">
-                    <div class="col-lg-12">
-                        <form action="insertausuario.php" method="POST">
+                    <div class="col-md-6 col-lg-12">
+                        <div class="tile">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label class="control-label">Identificación</label>
-                                        <input type="text" class="form-control" name="Identificacion"
-                                            placeholder="Digite Identificación" minlength="6" maxlength="11"
-                                            pattern="[0-9]{1,12}" title="Solamente se admiten números"
-                                            required="required">
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label class="control-label">Usuario</label>
-                                        <select class="form-control" name="Usuario" required="required">
-                                            <option>Seleccione el tipo de usuario a crear</option>
-                                            <option value="Secretaria">SECRETARIA</option>
-                                            <option value="Especialista">ESPECIALISTA</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label class="control-label">Contraseña</label>
-                                        <input type="password" class="form-control" name="Contraseña"
-                                            placeholder="Digite la contraseña" minlength="6" maxlength="15"
-                                            title="Solamente se admiten caracteres">
-                                    </div>
+                                    <form action="insertausuario.php" method="POST">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Identificación</label>
+                                                    <input type="text" class="form-control" name="Identificacion"
+                                                    placeholder="Digite Identificación" minlength="6" maxlength="11"
+                                                    pattern="[0-9]{1,12}" title="Solamente se admiten números"
+                                                    required="required">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Usuario</label>
+                                                    <select class="form-control" name="Usuario" required="required">
+                                                        <option>Seleccione el tipo de usuario a crear</option>
+                                                        <option value="Secretaria">SECRETARIA</option>
+                                                        <option value="Especialista">ESPECIALISTA</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Nombre completo del usuario</label>
+                                                    <input type="text" class="form-control" name="Nombre"
+                                                    placeholder="Digite el nombre completo" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,30}" 
+                                                    required="required" minlength="3" maxlength="100" title="Solamente se admiten caracteres">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Contraseña</label>
+                                                    <input type="password" class="form-control" name="Contraseña"
+                                                    placeholder="Digite la contraseña" minlength="6" maxlength="15"
+                                                    title="Solamente se admiten caracteres">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="modal-footer">
+                                            <button type="submit" name="insertausuario" class="btn btn-primary"><i
+                                                class="fa fa-fw fa-lg fa-check-circle"></i>Registrar
+                                            </button>
+                                            <button type="button" id="btnLimpiar" class="btn btn-danger"><i
+                                                class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
-                            <br>
-                            <div class="modal-footer">
-                                <button type="submit" name="insertausuario" class="btn btn-primary"><i
-                                        class="fa fa-fw fa-lg fa-check-circle"></i>Registrar
-                                </button>
-                                <button type="button" id="btnLimpiar" class="btn btn-danger"><i
-                                        class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar
-                                </button>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="tile">
-                <h3 class="tile-title">Usuarios Creados</h3>
-                <div class="tile-body">
-                    <table class="table table-hover table-bordered" id="sampleTable">
-                        <thead>
-                            <tr>
-                                <th>Identificación</th>
-                                <th>Usuario</th>
-                                <th>Fecha de registro</th>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="tile">
+                            <h3 class="tile-title">Usuarios Creados</h3>
+                            <div class="tile-body">
+                                <table class="table table-hover table-bordered" id="sampleTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Identificación</th>
+                                            <th>Usuario</th>
+                                            <th>Nombre</th>
 
-                                <!-- Agrega más columnas según sea necesario -->
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            require "conexion.php";
-                            $sql = "SELECT * FROM usuario";
-                            $resultado = $mysqli->query($sql);
-                            if ($resultado->num_rows > 0) {
-                                while ($row = $resultado->fetch_assoc()) {
-                                    echo "<tr>";
-                                    echo "<td>" . $row["Identificacion"] . "</td>";
-                                    echo "<td>" . $row["Usuario"] . "</td>";
-                                    echo "<td>" . $row["FechaRegistro"] . "</td>";
+                                            <th>Fecha de registro</th>
+
+                                            <!-- Agrega más columnas según sea necesario -->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        require "conexion.php";
+                                        $sql = "SELECT * FROM usuario";
+                                        $resultado = $mysqli->query($sql);
+                                        if ($resultado->num_rows > 0) {
+                                            while ($row = $resultado->fetch_assoc()) {
+                                                echo "<tr>";
+                                                echo "<td>" . $row["Identificacion"] . "</td>";
+                                                echo "<td>" . $row["Usuario"] . "</td>";
+                                                echo "<td>" . $row["Nombre"] . "</td>";
+
+                                                echo "<td>" . $row["FechaRegistro"] . "</td>";
 
                                     // Puedes agregar más columnas aquí si es necesario
-                                    echo "</tr>";
-                                }
-                            } else {
-                                echo "<tr><td colspan='2'>No hay usuarios creados</td></tr>";
-                            }
-                            $mysqli->close();
-                            ?>
-                        </tbody>
-                    </table>
+                                                echo "</tr>";
+                                            }
+                                        } else {
+                                            echo "<tr><td colspan='2'>No hay usuarios creados</td></tr>";
+                                        }
+                                        $mysqli->close();
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</main>
+            </main>
 
-        <!-- Essential javascripts for application to work-->
-        <script src="assets/jquery/jquery-3.3.1.min.js"></script>
-        <script src="assets/popper/popper.min.js"></script>
-        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="assets/main.js"></script>
-        <script type="text/javascript" src="main.js"></script>
+            <!-- Essential javascripts for application to work-->
+            <script src="assets/jquery/jquery-3.3.1.min.js"></script>
+            <script src="assets/popper/popper.min.js"></script>
+            <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+            <script src="assets/main.js"></script>
+            <script type="text/javascript" src="main.js"></script>
      <!--
     <script type="text/javascript" src="js/plugins/bootstrap-notify.min.js"></script>
 -->
