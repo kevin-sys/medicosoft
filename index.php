@@ -91,7 +91,7 @@ if ($_POST) {
   <link rel="stylesheet" type="text/css" href="css/main.css">
   <!-- Font-icon css-->
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <title>Login - SIMULASOFT</title>
+  <title>Login - MEDICOSOFT</title>
 </head>
 <body>
   <section class="material-half-bg">
@@ -99,7 +99,7 @@ if ($_POST) {
   </section>
   <section class="login-content">
     <div class="login-head">
-      <h1>SIMULASOFT</h1>
+      <h1>MEDICOSOFT</h1>
     </div>
     <br>
     <div class="login-box">

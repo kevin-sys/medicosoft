@@ -8,7 +8,7 @@ $Usuario = $_SESSION['Usuario'];
 <html lang="en">
 
 <head>
-    <title>Gestión de pacientes - MEDICOSOFT</title>
+    <title>MIS CITAS MEDICAS - MEDICOSOFT</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -85,9 +85,9 @@ $Usuario = $_SESSION['Usuario'];
                         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
                             class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Parametros generales</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                             <ul class="treeview-menu">
-                                <li><a class="treeview-item" href="asignar-cita.php"><i class="icon fa fa-circle-o"></i> Gestión de citas médicas</a></li>
-                                <li><a class="treeview-item" href="gestion-paciente.php"><i class="icon fa fa-circle-o"></i> Registro de pacientes</a></li>
-                                <li><a class="treeview-item" href="gestion-usuario.php"><i class="icon fa fa-circle-o"></i> Administración de usuarios</a></li>
+                                <li><a class="treeview-item" href="GestionDocente.php"><i class="icon fa fa-circle-o"></i> Gestión de citas médicas</a></li>
+                                <li><a class="treeview-item" href="ConsultarDocente.php"><i class="icon fa fa-circle-o"></i> Registro de pacientes</a></li>
+                                <li><a class="treeview-item" href="http://www2.unicesar.edu.co/unicesar/hermesoft/vortal/miVortal/logueo.jsp"><i class="icon fa fa-circle-o"></i> Administración de usuarios</a></li>
 
                             </ul>
                         </li>
@@ -102,23 +102,21 @@ $Usuario = $_SESSION['Usuario'];
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="tile">
-                            <h3 class="tile-title">Asignar cita a pacientes registrados en el sistema MEDICOSOFT</h3>
+                            <h3 class="tile-title">CITAS MEDICAS EN EL SISTEMA MEDICOSOFT</h3>
                             <div class="tile-body">
                                 <table class="table table-hover table-bordered" id="sampleTable">
                                     <thead>
                                         <tr>
+                                            <th>Codigo de la cita</th>
+
                                             <th>Identificación</th>
                                             <th>Primer nombre</th>
-                                            <th>Segundo nombre</th>
                                             <th>Primer apellido</th>
-                                            <th>Segundo apellido</th>
-                                            <th>Fecha de nacimiento</th>
-                                            <th>Sexo</th>
-                                            <th>Direccion</th>
+                                            <th>Fecha de la cita</th>
+                                            <th>Hora de la cita</th>
+                                            <th>Estado</th>
+                                            <th>Acción</th>
 
-
-                                            <th>Fecha de registro</th>
-                                            <th>Asignar cita</th>
 
 
                                         </tr>
@@ -126,25 +124,25 @@ $Usuario = $_SESSION['Usuario'];
                                     <tbody>
 
                                         <?php
-                                        $query = "SELECT * FROM paciente";
+                                        $query = "SELECT * FROM cita_medica";
                                         $result_tasks = mysqli_query($mysqli, $query);
 
                                         while ($row = mysqli_fetch_assoc($result_tasks)) { ?>
                                             <tr>
+                                                <td><?php echo $row['Id']; ?></td>
+
                                                 <td><?php echo $row['Identificacion']; ?></td>
                                                 <td><?php echo $row['PrimerNombre']; ?></td>
-                                                <td><?php echo $row['SegundoNombre']; ?></td>
                                                 <td><?php echo $row['PrimerApellido']; ?></td>
-                                                <td><?php echo $row['SegundoApellido']; ?></td>
-                                                <td><?php echo $row['FechaNacimiento']; ?></td>
-                                                <td><?php echo $row['Genero']; ?></td>
-                                                <td><?php echo $row['Direccion']; ?></td>
+                                                <td><?php echo $row['FechaCita']; ?></td>
+                                                <td><?php echo $row['HoraCita']; ?></td>
+                                                <td><?php echo $row['EstadoCita']; ?></td>
 
-                                                <td><?php echo $row['FechaRegistro']; ?></td>
+
 
 
                                                 <td>
-                                                    <a href="crear-agenda.php?Identificacion=<?php echo $row['Identificacion'] ?>" class="btn btn-success">
+                                                    <a href="confirma-cita.php?Id=<?php echo $row['Id'] ?>" class="btn btn-success">
                                                         <i class="fa fa-pencil" aria-hidden="true"></i>
                                                     </a>
 

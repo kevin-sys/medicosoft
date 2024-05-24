@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-05-2024 a las 07:59:51
+-- Tiempo de generación: 24-05-2024 a las 22:41:17
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -47,15 +47,17 @@ CREATE TABLE `cita_medica` (
   `Telefono` varchar(35) NOT NULL,
   `Email` varchar(35) NOT NULL,
   `Direccion` varchar(250) NOT NULL,
-  `Ciudad` varchar(250) NOT NULL
+  `Ciudad` varchar(250) NOT NULL,
+  `EstadoCita` varchar(50) NOT NULL DEFAULT 'Confirmada',
+  `Valoracion` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `cita_medica`
 --
 
-INSERT INTO `cita_medica` (`Id`, `FechaCita`, `HoraCita`, `NombreProcedimiento`, `PrecioProcedimiento`, `NombreProfesional`, `IdentificacionProfesional`, `Identificacion`, `PrimerNombre`, `SegundoNombre`, `PrimerApellido`, `SegundoApellido`, `FechaNacimiento`, `Genero`, `GrupoSanguineo`, `RH`, `Telefono`, `Email`, `Direccion`, `Ciudad`) VALUES
-(8, '2024-05-27', '15:25:00', 'CONSULTA DE PRIMERA VEZ POR OTRAS ESPECIALIDADES EN ODONTOLOGIA', 350000.00, 'MARIA MERCEDES DAZA DAZA', '17955918', '88787877', 'jose', 'Kevin ', 'Gómez ', 'Cantillo ', '1980-02-01', 'Masculino ', 'AB+ ', 'Positivo ', '3245650170 ', 'joe@hotmail.com ', 'Urb nando marin blq l apt 203 ', 'Medellin ');
+INSERT INTO `cita_medica` (`Id`, `FechaCita`, `HoraCita`, `NombreProcedimiento`, `PrecioProcedimiento`, `NombreProfesional`, `IdentificacionProfesional`, `Identificacion`, `PrimerNombre`, `SegundoNombre`, `PrimerApellido`, `SegundoApellido`, `FechaNacimiento`, `Genero`, `GrupoSanguineo`, `RH`, `Telefono`, `Email`, `Direccion`, `Ciudad`, `EstadoCita`, `Valoracion`) VALUES
+(10, '2024-05-27', '08:00:00', 'TERAPIA OCUPACIONAL INTEGRAL', 70000.00, 'MANUEL MORENO MENDOZA GARCIA', '36531923', '17955918', 'KEVIN', 'MANUEL ', 'GOMEZ ', 'CANTILLO ', '1999-10-11', 'Masculino', '', '', '3113940272 ', 'KEVIN@GMAIL.COM', 'Urb nando marin blq l apt 203 ', 'Valledupar ', 'Completada', 'El paciente asitio a la cita medica y se le hizo su respectiva terapia, se le practican una serie de ejercicios, y se envia al consultorio');
 
 -- --------------------------------------------------------
 
@@ -87,7 +89,7 @@ CREATE TABLE `paciente` (
 --
 
 INSERT INTO `paciente` (`Identificacion`, `PrimerNombre`, `SegundoNombre`, `PrimerApellido`, `SegundoApellido`, `FechaNacimiento`, `Genero`, `Telefono`, `Email`, `Direccion`, `Ciudad`, `Eps`, `Pais`, `GrupoSanguineo`, `RH`, `FechaRegistro`) VALUES
-('88787877', 'jose', 'Kevin', 'Gómez', 'Cantillo', '1980-02-01', 'Masculino', '3245650170', 'joe@hotmail.com', 'Urb nando marin blq l apt 203', 'Medellin', 'CAJACOPI', 'Colombia', 'AB+', 'Positivo', '2024-05-21 04:08:49');
+('17955918', 'KEVIN', 'MANUEL', 'GOMEZ', 'CANTILLO', '1999-10-11', 'Masculino', '3113940272', 'KEVIN@GMAIL.COM', 'Urb nando marin blq l apt 203', 'Valledupar', 'NUEVA EPS', 'Colombia', 'O+', 'Positivo', '2024-05-24 20:30:25');
 
 -- --------------------------------------------------------
 
@@ -107,9 +109,7 @@ CREATE TABLE `procedimiento` (
 --
 
 INSERT INTO `procedimiento` (`Id_CUPS`, `Nombre`, `PrecioProcedimiento`, `FechaRegistro`) VALUES
-('890204', 'CONSULTA DE PRIMERA VEZ POR OTRAS ESPECIALIDADES EN ODONTOLOGIA', 350000, '2024-05-22 03:28:36'),
-('890208', 'CONSULTA DE PRIMERA VEZ POR PSICOLOGÍA', 9800, '2024-05-22 03:33:52'),
-('937000', 'TERAPIA FONOAUDIOLÓGICA INTEGRAL SOD', 50000, '2024-05-22 03:15:00');
+('937000', 'TERAPIA OCUPACIONAL INTEGRAL', 70000, '2024-05-24 20:28:28');
 
 -- --------------------------------------------------------
 
@@ -131,9 +131,9 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`Identificacion`, `Usuario`, `Contraseña`, `ValidacionUsuario`, `Nombre`, `FechaRegistro`) VALUES
-('1065853708', 'Administrador', 'admin', 1, 'Pedro Perez', '2024-05-23 04:45:06'),
-('17955918', 'Especialista', '123456', 1, 'MARIA MERCEDES DAZA DAZA', '2024-05-23 05:47:54'),
-('873454', 'Secretaria', '123456', 1, 'Josefa Perez', '2024-05-23 04:45:15');
+('1065853708', 'Administrador', '123456', 1, 'Pedro Perez', '2024-05-24 20:24:54'),
+('12345678', 'Secretaria', '123456', 0, 'MARIA MERCEDES DAZA DAZA', '2024-05-24 20:26:01'),
+('36531923', 'Especialista', '123456', 1, 'MANUEL MORENO MENDOZA GARCIA', '2024-05-24 20:35:30');
 
 --
 -- Índices para tablas volcadas
@@ -172,7 +172,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `cita_medica`
 --
 ALTER TABLE `cita_medica`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
