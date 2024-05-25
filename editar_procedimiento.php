@@ -58,7 +58,7 @@ if (isset($_POST['update'])) {
 
   <nav class="navbar navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="gestion-paciente.php">Modificar procedimientos del sistema MEDICOSOFT</a>
+      <a class="navbar-brand" href="#">Modificar procedimientos del sistema MEDICOSOFT</a>
     </div>
   </nav>
 
